@@ -21,3 +21,30 @@ const currentYearElement = document.getElementById("current-year");
 if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();
 }
+
+const scrollTopButton = document.getElementById("scroll-top-btn");
+
+function toggleScrollTopButton() {
+    if (!scrollTopButton) {
+        return;
+    }
+
+    if (window.scrollY > 280) {
+        scrollTopButton.classList.add("visible");
+    } else {
+        scrollTopButton.classList.remove("visible");
+    }
+}
+
+if (scrollTopButton) {
+    window.addEventListener("scroll", toggleScrollTopButton);
+
+    scrollTopButton.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    toggleScrollTopButton();
+}

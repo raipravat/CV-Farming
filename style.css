@@ -24,6 +24,7 @@ body {
     radial-gradient(circle at top left, rgba(216, 164, 55, 0.25), transparent 32%),
     linear-gradient(135deg, rgba(47, 107, 59, 0.16), transparent 45%),
     linear-gradient(180deg, #f8f4ea 0%, var(--bg) 100%);
+  overflow-x: hidden;
 }
 
 .page-shell {
@@ -184,6 +185,10 @@ h3 {
   transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.hero-actions .tab-button {
+  flex: 1 1 220px;
+}
+
 .tab-button:hover,
 .tab-button.active {
   transform: translateY(-1px);
@@ -259,6 +264,12 @@ h3 {
   border: 1px solid var(--line);
 }
 
+.contact-box p:last-child,
+.card p:last-child,
+.letter-card p:last-child {
+  margin-bottom: 0;
+}
+
 .grid {
   display: grid;
   gap: 18px;
@@ -299,6 +310,7 @@ h3 {
   background: rgba(47, 107, 59, 0.1);
   color: var(--green-deep);
   font-weight: 600;
+  word-break: break-word;
 }
 
 .job-line {
@@ -326,10 +338,54 @@ h3 {
   font-size: 0.95rem;
 }
 
+.scroll-top-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  background: linear-gradient(135deg, var(--green), #4b8b48);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(33, 48, 33, 0.22);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 1000;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+  background: linear-gradient(135deg, var(--green-deep), var(--green));
+}
+
+.scroll-top-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
 @media (max-width: 860px) {
   .hero,
   .two-col {
     grid-template-columns: 1fr;
+  }
+
+  .page-shell {
+    width: min(100% - 24px, 1120px);
+    padding-top: 24px;
   }
 
   .hero-copy,
@@ -343,13 +399,21 @@ h3 {
   }
 
   .profile-identity {
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .contact-box {
     width: 100%;
     min-width: auto;
+  }
+
+  .hero-photo {
+    max-width: 220px;
+  }
+
+  .hero-text {
+    max-width: 100%;
   }
 }
 
@@ -357,18 +421,144 @@ h3 {
   .page-shell {
     width: min(100% - 18px, 1120px);
     padding-top: 18px;
+    padding-bottom: 28px;
   }
 
   h1 {
     font-size: 2.2rem;
   }
 
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  .hero {
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .hero-copy,
+  .hero-card,
+  .panel {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .hero-text {
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+
+  .trust-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
   .tab-button {
     width: 100%;
+    padding: 13px 18px;
   }
 
   .trust-link {
     width: 100%;
     justify-content: center;
+    padding: 12px 10px;
+  }
+
+  .hero-card {
+    padding-top: 18px;
+  }
+
+  .hero-photo {
+    max-width: 180px;
+    margin-bottom: 16px;
+    border-radius: 20px;
+  }
+
+  .summary-list li,
+  .card li {
+    margin-bottom: 8px;
+  }
+
+  .card,
+  .letter-card,
+  .contact-box {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .profile-head {
+    gap: 16px;
+  }
+
+  .profile-photo {
+    width: 88px;
+    height: 88px;
+  }
+
+  .profile-identity {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .scroll-top-btn {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .page-shell {
+    width: min(100% - 12px, 1120px);
+  }
+
+  .hero-copy,
+  .hero-card,
+  .panel,
+  .card,
+  .letter-card,
+  .contact-box {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 1.95rem;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+  }
+
+  .trust-links {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-link,
+  .tab-button {
+    font-size: 0.95rem;
+  }
+
+  .chip-list li {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .scroll-top-btn {
+    width: 46px;
+    height: 46px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .scroll-top-btn svg {
+    width: 20px;
+    height: 20px;
   }
 }
